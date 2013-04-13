@@ -1,0 +1,59 @@
+<%- model_class = @tamp.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<div id="force_graph" style="width:100%; height: 300px"></div>
+<div id="accel_graph" style="width:100%; height: 300px"></div>
+<script type="text/javascript">
+	var force_data = [
+			<% @measurements.each do |mm| %>
+	        [<%= mm.time %>,<%= mm.force %>],
+	    <% end %>];
+	var accel_x_data = [
+			<% @measurements.each do |mm| %>
+	        [<%= mm.time %>,<%= mm.accel_x %>],
+	    <% end %>];
+	var accel_y_data = [
+			<% @measurements.each do |mm| %>
+	        [<%= mm.time %>,<%= mm.accel_y %>],
+	    <% end %>];
+	var accel_z_data = [
+			<% @measurements.each do |mm| %>
+	        [<%= mm.time %>,<%= mm.accel_z %>],
+	    <% end %>];
+</script>
+<div style="display:none">
+	<h2>Tamp Data</h2>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>Time (ms)</th>
+	      <th>Force</th>
+	      <th>Accel (x)</th>
+	      <th>Accel (y)</th>
+	      <th>Accel (z)</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @measurements.each do |mm| %>
+	      <tr>
+	        <td><%= mm.time %></td>
+	        <td><%= mm.force %></td>
+	        <td><%= mm.accel_x %></td>
+	        <td><%= mm.accel_y %></td>
+	        <td><%= mm.accel_z %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+</div>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              tamps_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_tamp_path(@tamp), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              tamp_path(@tamp),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

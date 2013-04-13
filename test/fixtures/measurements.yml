@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  time: 
+  force: 
+  accel-x: 
+  accel-y: 
+  accel-z: 
+
+two:
+  time: 
+  force: 
+  accel-x: 
+  accel-y: 
+  accel-z: 

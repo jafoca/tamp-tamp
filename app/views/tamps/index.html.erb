@@ -1,0 +1,37 @@
+<%- model_class = Tamp.new.class -%>
+<h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Tamp <%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tamps.each do |tamp| %>
+      <tr>
+        <td><%= link_to "Tamp "+tamp.id.to_s, tamp_path(tamp) %></td>
+        <td><%=l tamp.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_tamp_path(tamp), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      tamp_path(tamp),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Import Tamp</h2>
+<%= form_tag import_tamps_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+<!--<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_tamp_path,
+            :class => 'btn btn-primary' %> -->

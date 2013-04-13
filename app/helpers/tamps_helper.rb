@@ -1,0 +1,2 @@
+module TampsHelper
+end
