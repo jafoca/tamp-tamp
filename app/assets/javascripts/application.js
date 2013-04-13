@@ -18,9 +18,10 @@
 //= require_tree .
 
 $(document).ready(function() {
-	//var force_data = $("#force_plot_data").html();
 	$.plot($('#force_graph'), [force_data]);
 	$.plot($('#accel_graph'), [accel_x_data,accel_y_data,accel_z_data]);
-
-	//$.plot($("#force_graph"), [ [[0, 0], [1, 1]] ], { yaxis: { max: 1 } });
+	
+	$("#data_toggle").click(function() {
+  	$("#full_data").toggle();
+  });
 });
